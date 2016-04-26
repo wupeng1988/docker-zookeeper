@@ -11,10 +11,14 @@ RUN apk add --no-cache wget bash \
     && mkdir -p /tmp/zookeeper
 
 EXPOSE 2181 2888 3888
+ENV NODE_INFO="" MYID=""
+
+ADD ./cluter.sh /opt/zookeeper/bin/
+RUN cat /opt/zookeeper/bin/zkServer.sh >> /opt/zookeeper/bin/cluter.sh
 
 WORKDIR /opt/zookeeper
 
 VOLUME ["/opt/zookeeper/conf", "/tmp/zookeeper"]
 
-ENTRYPOINT ["/opt/zookeeper/bin/zkServer.sh"]
+ENTRYPOINT ["/opt/zookeeper/bin/cluter.sh"]
 CMD ["start-foreground"]
