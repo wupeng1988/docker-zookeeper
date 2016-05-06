@@ -14,7 +14,7 @@ EXPOSE 2181 2888 3888
 ENV NODE_INFO="" MYID=""
 
 ADD ./cluter.sh /opt/zookeeper/bin/
-RUN cat /opt/zookeeper/bin/zkServer.sh >> /opt/zookeeper/bin/cluter.sh
+RUN cat /opt/zookeeper/bin/zkServer.sh >> /opt/zookeeper/bin/cluter.sh && chmod a+x /opt/zookeeper/bin/cluter.sh 
 
 WORKDIR /opt/zookeeper
 
